@@ -1,37 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><ZionKeim/></title>
-    <link rel="stylesheet" href="estilo.css">
-</head>
-<body>
+    <link rel="stylesheet" href="estilo.css" />
+  </head>
+  <body>
     <canvas id="circuitCanvas"></canvas>
-    <img class="MinhaFoto" src="assets/ZionKeim.jpg" alt="Minha foto">
+    <img class="MinhaFoto" src="assets/ZionKeim.jpg" alt="Minha foto" />
     <section class="Whoami">
-        <div class="AboutMe">
-            <h1>SOBRE MIM:</h1>
-            <p>Desde que me entendo por gente, minha paixão é a tecnologia, cursando o último ano de segurança da informação e buscando aprender mais sobre como os computadores conectam o mundo e como deixar essa conexão mais segura e garantida a cada dia.</p>
-        </div>
-        <div class="Tech">
-            <h2>Tecnologias que domino: </h2>
-            <img class="Frameworks" src="assets/JS.png" alt="JavaScript">
-            <img class="Frameworks" src="assets/Python.png" alt="Python">
-            <img class="Frameworks" src="assets/REACT.png" alt="REACT">
-        </div>
+      <div class="AboutMe">
+        <h1>SOBRE MIM:</h1>
+        <p>
+          Desde que me entendo por gente, minha paixão é a tecnologia, cursando
+          o último ano de segurança da informação e buscando aprender mais sobre
+          como os computadores conectam o mundo e como deixar essa conexão mais
+          segura e garantida a cada dia.
+        </p>
+        <h1>CONTATOS:</h1>
+        <a href="https://github.com/black-notfound">
+          <img class="contacts" src="assets/github.png" alt="github" />
+          Github
+        </a>
+        <a href="https://www.linkedin.com/in/zion-keim/">
+          <img class="contacts" src="assets/linkedin.svg" alt="linkedin" />
+          Linkedin
+        </a>
+      </div>
+      <div class="Tech">
+        <h2>Tecnologias que domino:</h2>
+        <img class="Frameworks" src="assets/JS.png" alt="JavaScript" />
+        <img class="Frameworks" src="assets/Python.png" alt="Python" />
+        <img class="Frameworks" src="assets/REACT.png" alt="REACT" />
+      </div>
     </section>
     <div class="Projects">
-        <div class="Tetris">
-            <h1>Tetris</h1>
-            <div class="tetris-container">
-            <div id="tetris-grid"></div>
-            <div class="score">Score: <span id="score">0</span></div>
-            </div>
+      <div class="Tetris">
+        <h1>Tetris</h1>
+        <div class="tetris-container">
+          <div id="tetris-grid"></div>
+          <div class="score">Score: <span id="score">0</span></div>
         </div>
-        <a href="https://black-notfound.github.io/nao-atendido/ " target="_blank">SaaS para controle de operações logisticas e centros de distribuição</a>
+      </div>
+      <div class="SaaS">
+        <a
+          href="https://black-notfound.github.io/nao-atendido/ "
+          target="_blank"
+          >SaaS para controle de operações logisticas e centros de
+          distribuição</a
+        >
+      </div>
     </div>
     <script src="Tetris.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

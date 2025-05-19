@@ -1,19 +1,19 @@
 const canvas = document.getElementById("circuitCanvas");
 const ctx = canvas.getContext("2d");
 
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
+let width = (canvas.width = window.innerWidth);
+let height = (canvas.height = window.innerHeight);
 
 const nodes = [];
 const mouse = { x: width / 2, y: height / 2 };
-const numNodes = 120;
+const numNodes = 400;
 
 for (let i = 0; i < numNodes; i++) {
   nodes.push({
     x: Math.random() * width,
     y: Math.random() * height,
     vx: (Math.random() - 0.5) * 0.5,
-    vy: (Math.random() - 0.5) * 0.5
+    vy: (Math.random() - 0.5) * 0.5,
   });
 }
 
@@ -45,7 +45,7 @@ function draw() {
 
         const opacity = 1 - dist / 120;
         ctx.strokeStyle = `rgba(0, 255, 255, ${opacity})`;
-        ctx.lineWidth = 1;
+        ctx.lineWidth = 0.5;
 
         ctx.beginPath();
         ctx.moveTo(nodeA.x, nodeA.y);
@@ -69,7 +69,7 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
-document.addEventListener("mousemove", e => {
+document.addEventListener("mousemove", (e) => {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
 });
