@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="estilo.css" />
   </head>
   <body>
-    <canvas id="circuitCanvas"></canvas>
+    <canvas id="starCanvas"></canvas>
     <img class="MinhaFoto" src="assets/ZionKeim.jpg" alt="Minha foto" />
     <section class="Whoami">
+      <div class="planet"></div>
       <div class="AboutMe">
         <h1>SOBRE MIM:</h1>
         <p>
@@ -35,24 +36,13 @@
         <img class="Frameworks" src="assets/REACT.png" alt="REACT" />
       </div>
     </section>
-    <div class="Projects">
-      <div class="Tetris">
-        <h1>Tetris</h1>
-        <div class="tetris-container">
-          <div id="tetris-grid"></div>
-          <div class="score">Score: <span id="score">0</span></div>
-        </div>
-      </div>
-      <div class="SaaS">
-        <a
-          href="https://black-notfound.github.io/nao-atendido/ "
-          target="_blank"
-          >SaaS para controle de operações logisticas e centros de
-          distribuição</a
-        >
-      </div>
-    </div>
+    <section class="carousel-container">
+      <h2>Meus Projetos</h2>
+      <div class="carousel" id="carousel"></div>
+    </section>
+
     <script src="Tetris.js"></script>
     <script src="script.js"></script>
+    <footer class="site-footer"></footer>
   </body>
 </html>

@@ -1,21 +1,39 @@
+/* Reset e configuração padrão */
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box; /* Melhora controle de tamanhos */
   font-family: Arial, Helvetica, sans-serif;
   color: #fff;
 }
 
-section {
+.site-footer {
+  background-image: url("assets/fundo-estrada.png"); /* Coloque o caminho correto */
+  background-size: cover; /* Ajusta para cobrir o rodapé todo */
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 1550px; /* Ajuste a altura conforme o efeito desejado */
+  width: 100%;
+}
+
+h1,
+h2,
+h3 {
+  color: cyan;
+}
+
+h3 {
+  color: lightgreen;
+}
+
+.Whoami {
   display: flex;
   margin-top: 125px;
   position: relative;
   z-index: 1;
   width: 100%;
-  gap: 300px;
-}
-
-h1 {
-  color: cyan;
+  gap: 550px;
 }
 
 .AboutMe {
@@ -29,9 +47,17 @@ h1 {
 .MinhaFoto {
   border-radius: 50%;
   max-width: 100px;
-  margin-top: -100px;
   position: absolute;
-  z-index: 2;
+  top: 0;
+  left: 40%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+@media (max-width: 600px) {
+  .MinhaFoto {
+    max-width: 70px;
+  }
 }
 
 .contacts {
@@ -39,31 +65,33 @@ h1 {
   height: 50px;
 }
 
-h2 {
-  color: cyan;
-}
-
 .Frameworks {
   width: 250px;
   margin: 0;
-  transition: 3.5;
+  transition: transform 0.3s ease;
 }
 
 .Frameworks:hover {
-  width: 270px;
+  transform: scale(1.08);
 }
 
-h3 {
-  color: lightgreen;
+.planet {
+  background: #cc6607;
+  height: 500px;
+  width: 1000px;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
 }
 
-canvas#circuitCanvas {
+#starCanvas {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: -1; /* Fica atrás de todo o conteúdo */
   width: 100%;
   height: 100%;
+  z-index: -1;
+  background-color: black;
 }
 
 .projects {
@@ -94,4 +122,78 @@ canvas#circuitCanvas {
   height: 20px;
   box-sizing: border-box;
   border: 1px solid #111;
+}
+
+.carousel-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column; /* Empilha verticalmente */
+  align-items: center; /* Centraliza na horizontal */
+}
+
+.carousel-container h2 {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  color: cyan;
+  text-align: center;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 4px;
+}
+
+.card {
+  flex: 0 0 300px;
+  scroll-snap-align: start;
+  background: #333;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card h3 {
+  margin: 10px 0 5px;
+  color: lightgreen;
+}
+
+.card p {
+  font-size: 0.9rem;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: rgb(19, 150, 69);
+  color: #000;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.card a:hover {
+  background: #00ffff;
 }
