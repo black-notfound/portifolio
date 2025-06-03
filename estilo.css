@@ -7,16 +7,6 @@
   color: #fff;
 }
 
-.site-footer {
-  background-image: url("assets/fundo-estrada.png"); /* Coloque o caminho correto */
-  background-size: cover; /* Ajusta para cobrir o rodapé todo */
-  background-position: center;
-  background-repeat: no-repeat;
-
-  height: 1550px; /* Ajuste a altura conforme o efeito desejado */
-  width: 100%;
-}
-
 h1,
 h2,
 h3 {
@@ -44,27 +34,6 @@ h3 {
   padding-top: 70px;
 }
 
-.MinhaFoto {
-  border-radius: 50%;
-  max-width: 100px;
-  position: absolute;
-  top: 0;
-  left: 40%;
-  transform: translateX(-50%);
-  z-index: 999;
-}
-
-@media (max-width: 600px) {
-  .MinhaFoto {
-    max-width: 70px;
-  }
-}
-
-.contacts {
-  width: 50px;
-  height: 50px;
-}
-
 .Frameworks {
   width: 250px;
   margin: 0;
@@ -75,13 +44,205 @@ h3 {
   transform: scale(1.08);
 }
 
+.orbit {
+  width: 400px; /* ajuste conforme desejar o raio da órbita */
+  height: 400px;
+  left: 50px;
+  position: relative;
+  animation: orbitPlanet 30s linear infinite;
+}
+
+.planet-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  margin: 50px auto;
+}
+
 .planet {
-  background: #cc6607;
-  height: 500px;
-  width: 1000px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
+  background: radial-gradient(
+      circle at 30% 30%,
+      #ffb347,
+      #ff6600 70%,
+      #cc3300 100%
+    ),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+  box-shadow: inset -15px -15px 30px rgba(0, 0, 0, 0.2),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 102, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+  border: 3px solid #ff6600;
+}
+
+/* Anéis do planeta */
+.planet::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px; /* Largura do anel – mais chamativo */
+  height: 20px; /* Espessura do anel */
+  background: linear-gradient(
+    to right,
+    rgba(255, 200, 100, 0.7),
+    rgba(255, 255, 150, 0.9),
+    rgba(255, 200, 100, 0.7)
+  );
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotateX(60deg);
+  box-shadow: 0 0 25px rgba(255, 200, 100, 0.8);
+  pointer-events: none;
+}
+
+/* Efeito de textura girando no eixo X */
+.planet::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  border-radius: 50%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.1) 0px,
+    rgba(255, 255, 255, 0.1) 5px,
+    transparent 5px,
+    transparent 10px
+  );
+  animation: texture-spin-x 20s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes texture-spin-x {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+
+/* Lua maior */
+.moon {
+  width: 30px;
+  height: 30px;
+  background: #b0a080;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: -100px 0; /* raio de órbita = 100px */
+  animation: orbit 8s linear infinite;
+  box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Lua menor */
+.moon2 {
+  width: 20px;
+  height: 20px;
+  background: #d8cbb3;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: -70px 0; /* raio de órbita = 70px */
+  animation: orbit2 12s linear infinite;
+  box-shadow: inset -3px -3px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Órbitas das luas */
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+@keyframes orbit2 {
+  0% {
+    transform: rotate(0deg) translateX(70px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(70px) rotate(-360deg);
+  }
+}
+
+#planetInfo {
+  position: absolute;
+  top: 45%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  background: rgba(30, 30, 30, 0.95);
+  padding: 10px;
+  border-radius: 15px;
+  color: white;
+  max-width: 600px;
+  height: 600px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+#planetInfo.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.MinhaFoto {
+  border-radius: 50%;
+  max-width: 120px;
+  display: block;
+  margin: 0 auto 20px auto; /* centraliza e adiciona espaço embaixo */
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.MinhaFoto:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .MinhaFoto {
+    max-width: 80px;
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column; /* melhor para mobile */
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.contacts a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #fff; /* ou o tom desejado */
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.contacts a:hover {
+  color: #ff6600; /* efeito hover neon */
+}
+
+.contacts_img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
 }
 
 #starCanvas {
@@ -196,4 +357,14 @@ h3 {
 
 .card a:hover {
   background: #00ffff;
+}
+
+.site-footer {
+  background-image: url("assets/fundo-estrada.png"); /* Coloque o caminho correto */
+  background-size: cover; /* Ajusta para cobrir o rodapé todo */
+  background-position: center;
+  background-repeat: no-repeat;
+
+  height: 1550px; /* Ajuste a altura conforme o efeito desejado */
+  width: 100%;
 }

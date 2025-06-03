@@ -123,7 +123,6 @@ window.addEventListener("scroll", () => {
 });
 
 // Carrossel de projetos
-
 const projects = [
   {
     title: "SaaS para monitoramento de operações logísticas",
@@ -161,3 +160,26 @@ projects.forEach((project) => {
 
   carousel.appendChild(card);
 });
+
+(function setupPlanetInteraction() {
+  const planet = document.querySelector(".planet");
+  const planetInfo = document.getElementById("planetInfo");
+
+  if (!planet || !planetInfo) {
+    console.warn("Elemento 'planet' ou 'planetInfo' não encontrado!");
+    return;
+  }
+
+  planet.addEventListener("click", (event) => {
+    event.stopPropagation();
+    planetInfo.classList.add("visible");
+  });
+
+  document.addEventListener("click", (event) => {
+    if (planetInfo.classList.contains("visible")) {
+      if (!planetInfo.contains(event.target) && event.target !== planet) {
+        planetInfo.classList.remove("visible");
+      }
+    }
+  });
+})();
