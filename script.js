@@ -82,6 +82,7 @@ function animateStars() {
     ctx.save();
     ctx.translate(shooting.x, shooting.y);
     ctx.rotate(shooting.angle);
+    shootingStars = shootingStars.filter((shooting) => shooting.alpha > 0);
 
     const grad = ctx.createLinearGradient(0, 0, shooting.length, 0);
     grad.addColorStop(0, `rgba(255, 255, 255, ${shooting.alpha})`);
