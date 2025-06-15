@@ -30,12 +30,12 @@ h3 {
   color: #fff;
   font-size: 1.125rem;
   font-family: "Times New Roman", Times, serif;
-  width: 450px;
+  width: 400px;
   padding-top: 70px;
 }
 
 .Frameworks {
-  width: 250px;
+  width: 200px;
   margin: 0;
   transition: transform 0.3s ease;
 }
@@ -123,14 +123,14 @@ h3 {
 #planetInfo {
   position: absolute;
   top: 50%;
-  left: 35%;
+  left: 40%;
   transform: translate(-50%, -50%);
   background: rgba(30, 30, 30, 0.95);
   padding: 10px;
   border-radius: 15px;
   color: white;
-  max-width: 550px;
-  height: 550px;
+  max-width: 500px;
+  height: 500px;
   text-align: center;
   opacity: 0;
   pointer-events: none;
@@ -306,11 +306,78 @@ h3 {
 }
 
 .site-footer {
-  background-image: url("assets/fundo-estrada.png"); /* Coloque o caminho correto */
-  background-size: cover; /* Ajusta para cobrir o rodapé todo */
   background-position: center;
   background-repeat: no-repeat;
 
   height: 1550px; /* Ajuste a altura conforme o efeito desejado */
   width: 100%;
+}
+
+.ufo {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  margin: 80px auto;
+  pointer-events: none;
+  /* já tem transform pra centrar via translateX(-50%)? Se sim, remova—neste exemplo não usamos. */
+}
+
+.ufo-top {
+  width: 100px;
+  height: 50px;
+  background: silver;
+  border-radius: 50% 50% 0 0;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px cyan;
+}
+
+.ufo-bottom {
+  width: 150px;
+  height: 40px;
+  background: #999;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 30px;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px cyan;
+}
+
+.raio {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(0,255,0,0.4) 0%, rgba(0,255,0,0.2) 60%, transparent 100%);
+  box-shadow: 0 0 30px 15px rgba(0,255,0,0.2);
+  animation: pulsar 1.5s infinite ease-in-out;
+  opacity: 0.6;
+  border-radius: 50% 50% 0 0;
+  z-index: -1;
+}
+
+@keyframes pulsar {
+  0%   { transform: translateX(-50%) scaleY(1);   opacity: 0.4; box-shadow:0 0 20px 5px rgba(0,255,0,0.2); }
+  50%  { transform: translateX(-50%) scaleY(1.1); opacity: 0.8; box-shadow:0 0 40px 15px rgba(0,255,0,0.3); }
+  100% { transform: translateX(-50%) scaleY(1);   opacity: 0.4; box-shadow:0 0 20px 5px rgba(0,255,0,0.2); }
+}
+
+.abduzivel {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  font-size: 3rem;
+  text-align: center;
+  transition: transform 4s ease-in-out, opacity 4s ease-in-out;
+}
+
+.abduzido {
+  transform: translateY(-150px) scale(0.3);
+  opacity: 0;
 }

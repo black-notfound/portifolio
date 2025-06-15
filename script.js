@@ -36,6 +36,9 @@ layers.forEach((layer, i) => createStars(layer, 100 + i * 50));
 
 // Criar estrela cadente
 function createShootingStar() {
+
+  if (shootingStars >= 20) return;
+
   shootingStars.push({
     x: Math.random() * canvas.width,
     y: (Math.random() * canvas.height) / 2,
@@ -184,3 +187,47 @@ projects.forEach((project) => {
     }
   });
 })();
+
+//Disco voador
+document.addEventListener("DOMContentLoaded", () => {
+  const ufo  = document.getElementById("ufo");
+  const vaca = document.getElementById("vaca");
+  let abduzido = false;
+
+  function isVisible(el) {
+    const r = el.getBoundingClientRect();
+    return r.top < window.innerHeight && r.bottom > 0;
+  }
+
+  function verificarEAbduzir() {
+    if (!abduzido && isVisible(ufo) && isVisible(vaca)) {
+      abduzido = true;
+      vaca.classList.add("abduzido");
+      // após 4s (duração da transição), inicia o movimento
+      setTimeout(iniciarMovimentoUFO, 4000);
+      window.removeEventListener("scroll", verificarEAbduzir);
+    }
+  }
+
+  function iniciarMovimentoUFO() {
+    // captura o transform inicial (pode ser 'none' ou matrix)
+    const initialTransform = getComputedStyle(ufo).transform;
+
+    let angle = 0;
+    const ampX = 30, ampY = 20;
+
+    function mover() {
+      const dx = Math.cos(angle) * ampX;
+      const dy = Math.sin(angle) * ampY;
+      // concatena com o transform original — sem teleporte!
+      ufo.style.transform = `${initialTransform} translate(${dx}px, ${dy}px)`;
+      angle += 0.02;
+      requestAnimationFrame(mover);
+    }
+    mover();
+  }
+
+  window.addEventListener("scroll", verificarEAbduzir);
+  // também checa ao carregar
+  verificarEAbduzir();
+});
