@@ -1,93 +1,207 @@
-/* Reset e configuração padrão */
+/* Reset global */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Melhora controle de tamanhos */
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
   font-family: Arial, Helvetica, sans-serif;
   color: #fff;
+  background: #000;
+  line-height: 1.5;
+  overflow-x: hidden;
 }
 
 h1,
 h2,
 h3 {
   color: cyan;
+  text-align: center;
+}
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-h3 {
-  color: lightgreen;
+/* Canvas background */
+#starCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 }
 
+/* Header */
+.site-header {
+  padding: 2rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
+}
+.site-header h1 {
+  font-size: 2.5rem;
+}
+.site-header p {
+  font-size: 1rem;
+}
+
+/* Main container */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Seção Quem sou */
 .Whoami {
   display: flex;
-  margin-top: 125px;
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  gap: 550px;
-}
-
-.AboutMe {
-  color: #fff;
-  font-size: 1.125rem;
-  font-family: "Times New Roman", Times, serif;
-  width: 400px;
-  padding-top: 70px;
-}
-
-.Frameworks {
-  width: 200px;
-  margin: 0;
-  transition: transform 0.3s ease;
-}
-
-.Frameworks:hover {
-  transform: scale(1.08);
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
 }
 
 .orbit-container {
   position: relative;
-  width: 300px;
-  height: 300px;
-  margin: 0 auto;
+  width: 250px;
+  height: 250px;
 }
 
 .planet {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   transform: translate(-50%, -50%);
   background: radial-gradient(circle at 30% 30%, #6ad0ff, #3489c1);
   border: 4px solid #2a4a79;
   border-radius: 50%;
-  box-shadow: inset -8px -8px 0 #4da0d1, 0 0 20px rgba(0, 204, 255, 0.6);
+  box-shadow: inset -8px -8px 0 #4da0d1, 0 0 15px rgba(0, 204, 255, 0.6);
   cursor: pointer;
   animation: planetBobble 4s ease-in-out infinite;
-  z-index: 2;
+  z-index: 3;
+}
+
+.planet-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 300px;
+  height: 100vh;
+  background: rgba(30, 30, 30, 0.95);
+  color: white;
+  padding: 2rem 1rem;
+  transition: right 0.4s ease-in-out;
+  z-index: 999;
+  overflow-y: auto;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.planet-sidebar.visible {
+  right: 0;
+}
+
+.planet-sign {
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: floatUpDown 3s ease-in-out infinite;
+  z-index: 10;
+}
+
+.sign-text {
+  background: rgba(0, 255, 255, 0.15);
+  padding: 8px 16px;
+  border: 2px solid cyan;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: cyan;
+  font-weight: bold;
+  text-shadow: 0 0 5px cyan;
+  white-space: nowrap;
+}
+
+.sign-arrow {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 10px solid cyan;
+  margin-top: 4px;
+  animation: blinkArrow 1.5s infinite ease-in-out;
+}
+
+@keyframes floatUpDown {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-8px);
+  }
+}
+
+@keyframes blinkArrow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .orbit {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  border: 1.5px dashed rgba(255, 255, 255, 0.2);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  pointer-events: none;
+  transform: translate(-50%, -50%);
   animation: rotateOrbit 10s linear infinite;
+  z-index: 1;
 }
-
 .orbit1 {
-  width: 160px;
-  height: 160px;
+  width: 140px;
+  height: 140px;
   animation-duration: 8s;
 }
-
 .orbit2 {
-  width: 220px;
-  height: 220px;
+  width: 200px;
+  height: 200px;
   animation-duration: 14s;
+}
+
+.moon {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.2);
+  z-index: 2;
+}
+.moon1 {
+  background-color: #ffee99;
+  border: 2px solid #ccaa33;
+}
+.moon2 {
+  background-color: #c0f0ff;
+  border: 2px solid #3399cc;
 }
 
 @keyframes rotateOrbit {
@@ -98,230 +212,147 @@ h3 {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+@keyframes planetBobble {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
 
-.moon {
+/* Diálogo Sobre mim */
+.planet-info {
   position: absolute;
   top: 50%;
-  left: 100%; /* posiciona a lua na borda direita da órbita */
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  box-shadow: inset -3px -3px 0 rgba(0, 0, 0, 0.2);
-}
-
-.moon1 {
-  background-color: #ffee99;
-  border: 2px solid #ccaa33;
-}
-
-.moon2 {
-  background-color: #c0f0ff;
-  border: 2px solid #3399cc;
-}
-
-#planetInfo {
-  position: absolute;
-  top: 50%;
-  left: 40%;
+  left: 60%;
   transform: translate(-50%, -50%);
   background: rgba(30, 30, 30, 0.95);
-  padding: 10px;
-  border-radius: 15px;
-  color: white;
-  max-width: 500px;
-  height: 500px;
-  text-align: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  max-width: 450px;
+  height: 650px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s;
+  z-index: 5;
 }
-
-#planetInfo.visible {
+.planet-info.visible {
   opacity: 1;
   pointer-events: auto;
 }
 
 .MinhaFoto {
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
-  max-width: 120px;
+  margin: 0 auto 1rem;
   display: block;
-  margin: 0 auto 20px auto; /* centraliza e adiciona espaço embaixo */
-  position: relative;
-  z-index: 2;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s;
 }
-
 .MinhaFoto:hover {
   transform: scale(1.1);
-}
-
-@media (max-width: 600px) {
-  .MinhaFoto {
-    max-width: 80px;
-  }
-}
-
-.contacts {
-  display: flex;
-  flex-direction: column; /* melhor para mobile */
-  align-items: flex-start;
-  gap: 10px;
-  margin-top: 20px;
 }
 
 .contacts a {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  color: #fff;
   text-decoration: none;
-  color: #fff; /* ou o tom desejado */
-  font-weight: bold;
-  transition: color 0.3s ease;
+  transition: color 0.2s;
 }
-
 .contacts a:hover {
-  color: #ff6600; /* efeito hover neon */
+  color: #ff6600;
 }
-
 .contacts_img {
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  width: 24px;
+  height: 24px;
 }
 
-#starCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-color: black;
-}
-
-.projects {
-  font-family: "Times New Roman", Times, serif;
-  display: flex;
-  width: 100%;
-  gap: 300px;
-  position: relative;
-}
-
-.tetris-container {
-  display: inline-block;
-  margin-top: 20px;
-}
-
-#tetris-grid {
-  width: 200px;
-  height: 400px;
-  display: grid;
-  grid-template-columns: repeat(10, 20px);
-  grid-template-rows: repeat(20, 20px);
-  background: #222;
-  border: 2px solid #fff;
-}
-
-#tetris-grid div {
-  width: 20px;
-  height: 20px;
-  box-sizing: border-box;
-  border: 1px solid #111;
-}
-
-.carousel-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 50px auto;
-  display: flex;
-  flex-direction: column; /* Empilha verticalmente */
-  align-items: center; /* Centraliza na horizontal */
-}
-
-.carousel-container h2 {
-  margin-bottom: 20px;
-  font-size: 2.5rem;
-  color: cyan;
+.Tech {
+  flex: 1;
   text-align: center;
 }
-
-.carousel {
+.tech-list {
+  list-style: none;
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
 }
-
-.carousel::-webkit-scrollbar {
-  height: 8px;
+.tech-list img {
+  width: 100px;
+  transition: transform 0.2s;
+}
+.tech-list img:hover {
+  transform: scale(1.1);
 }
 
+/* Carrossel de projetos */
+.carousel-container {
+  margin: 3rem 0;
+}
+.carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scroll-snap-type: x mandatory;
+}
+.carousel::-webkit-scrollbar {
+  height: 6px;
+}
 .carousel::-webkit-scrollbar-thumb {
   background: #555;
-  border-radius: 4px;
+  border-radius: 3px;
 }
-
 .card {
-  flex: 0 0 300px;
   scroll-snap-align: start;
+  min-width: 250px;
+  height: auto;
   background: #333;
-  border-radius: 10px;
-  padding: 20px;
+  padding: 1rem;
+  border-radius: 0.5rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  transition: transform 0.3s ease;
+  transition: transform 0.2s;
 }
-
 .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
 }
-
 .card h3 {
   margin: 10px 0 5px;
   color: lightgreen;
+  font-size: 1.4rem;
 }
-
 .card p {
-  font-size: 0.9rem;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
-
 .card a {
   display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: rgb(19, 150, 69);
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #139645;
   color: #000;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background 0.3s ease;
+  border-radius: 0.5rem;
+  transition: background 0.2s;
 }
-
 .card a:hover {
   background: #00ffff;
 }
 
-.site-footer {
-  background-position: center;
-  background-repeat: no-repeat;
-
-  height: 1550px; /* Ajuste a altura conforme o efeito desejado */
-  width: 100%;
-}
-
+/* Disco voador e abdução */
 .ufo {
   position: relative;
   width: 200px;
   height: 100px;
-  margin: 80px auto;
+  margin: 4rem auto;
   pointer-events: none;
-  /* já tem transform pra centrar via translateX(-50%)? Se sim, remova—neste exemplo não usamos. */
 }
-
 .ufo-top {
   width: 100px;
   height: 50px;
@@ -329,11 +360,9 @@ h3 {
   border-radius: 50% 50% 0 0;
   position: absolute;
   left: 50%;
-  top: 0;
   transform: translateX(-50%);
   box-shadow: 0 0 10px cyan;
 }
-
 .ufo-bottom {
   width: 150px;
   height: 40px;
@@ -345,7 +374,6 @@ h3 {
   transform: translateX(-50%);
   box-shadow: 0 0 15px cyan;
 }
-
 .raio {
   position: absolute;
   top: 100%;
@@ -353,20 +381,32 @@ h3 {
   transform: translateX(-50%);
   width: 80px;
   height: 200px;
-  background: radial-gradient(ellipse at center, rgba(0,255,0,0.4) 0%, rgba(0,255,0,0.2) 60%, transparent 100%);
-  box-shadow: 0 0 30px 15px rgba(0,255,0,0.2);
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 255, 0, 0.4) 0%,
+    rgba(0, 255, 0, 0.2) 60%,
+    transparent 100%
+  );
+  box-shadow: 0 0 30px 15px rgba(0, 255, 0, 0.2);
   animation: pulsar 1.5s infinite ease-in-out;
   opacity: 0.6;
-  border-radius: 50% 50% 0 0;
+  border-radius: 50% 50%;
   z-index: -1;
 }
-
 @keyframes pulsar {
-  0%   { transform: translateX(-50%) scaleY(1);   opacity: 0.4; box-shadow:0 0 20px 5px rgba(0,255,0,0.2); }
-  50%  { transform: translateX(-50%) scaleY(1.1); opacity: 0.8; box-shadow:0 0 40px 15px rgba(0,255,0,0.3); }
-  100% { transform: translateX(-50%) scaleY(1);   opacity: 0.4; box-shadow:0 0 20px 5px rgba(0,255,0,0.2); }
+  0% {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateX(-50%) scaleY(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-50%) scaleY(1);
+    opacity: 0.4;
+  }
 }
-
 .abduzivel {
   position: relative;
   width: 60px;
@@ -374,10 +414,17 @@ h3 {
   margin: 0 auto;
   font-size: 3rem;
   text-align: center;
-  transition: transform 4s ease-in-out, opacity 4s ease-in-out;
+  transition: transform 4s ease, opacity 4s ease;
 }
-
 .abduzido {
   transform: translateY(-150px) scale(0.3);
   opacity: 0;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 150px;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
 }

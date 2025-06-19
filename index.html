@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><ZionKeim/></title>
+    <meta
+      name="description"
+      content="Portfólio de Zion Keim — Segurança da Informação e Desenvolvimento Web"
+    />
+    <title>Zion Keim | Portfólio</title>
     <link rel="stylesheet" href="estilo.css" />
+    <link rel="stylesheet" href="games.css" />
   </head>
   <body>
-    <canvas id="starCanvas"></canvas>
-    <section class="Whoami">
-      <div class="AboutMe">
-        <div class="orbit-container">
-          <div class="planet" id=".planet"></div>
+    <canvas id="starCanvas" aria-hidden="true"></canvas>
+    <header class="site-header">
+      <h1>Zion Keim</h1>
+      <p>Segurança da Informação &amp; Web Developer</p>
+    </header>
 
+    <main>
+      <!-- Seção sobre mim -->
+      <section id="about" class="Whoami">
+        <div class="orbit-container">
+          <div class="planet-sign">
+            <div class="sign-text">Veja mais</div>
+            <div class="sign-arrow"></div>
+          </div>
+          <div class="planet"></div>
           <div class="orbit orbit1">
             <div class="moon moon1"></div>
           </div>
@@ -20,65 +34,93 @@
             <div class="moon moon2"></div>
           </div>
         </div>
-        <div id="planetInfo" class="hidden">
-          <div class="sobreMim">
-            <div class="contacts">
+
+        <div class="planet-sidebar">
+          <img class="MinhaFoto" src="assets/ZionKeim.jpg" alt="Minha foto" />
+          <h1>CONTATOS:</h1>
+          <div class="contacts">
+            <a href="https://github.com/black-notfound">
+              <img class="contacts_img" src="assets/github.png" alt="github" />
+              Github
+            </a>
+            <a href="https://www.linkedin.com/in/zion-keim/">
               <img
-                class="MinhaFoto"
-                src="assets/ZionKeim.jpg"
-                alt="Minha foto"
+                class="contacts_img"
+                src="assets/linkedin.svg"
+                alt="linkedin"
               />
-              <h1>CONTATOS:</h1>
-              <a href="https://github.com/black-notfound">
-                <img
-                  class="contacts_img"
-                  src="assets/github.png"
-                  alt="github"
-                />
-                Github
-              </a>
-              <a href="https://www.linkedin.com/in/zion-keim/">
-                <img
-                  class="contacts_img"
-                  src="assets/linkedin.svg"
-                  alt="linkedin"
-                />
-                Linkedin
-              </a>
-            </div>
-            <h2>SOBRE MIM:</h2>
-            <p>
-              Desde que me entendo por gente, minha paixão é a tecnologia,
-              cursando o último ano de segurança da informação e buscando
-              aprender mais sobre como os computadores conectam o mundo e como
-              deixar essa conexão mais segura e garantida a cada dia.
-            </p>
+              Linkedin
+            </a>
           </div>
+          <h2>SOBRE MIM:</h2>
+          <p>
+            Desde que me entendo por gente, minha paixão é a tecnologia,
+            cursando o último ano de segurança da informação e buscando aprender
+            mais sobre como os computadores conectam o mundo e como deixar essa
+            conexão mais segura e garantida a cada dia.
+          </p>
         </div>
+
+        <div class="Tech">
+          <h2>Tecnologias</h2>
+          <ul class="tech-list">
+            <li><img src="assets/JS.png" alt="JavaScript" /></li>
+            <li><img src="assets/Python.png" alt="Python" /></li>
+            <li><img src="assets/REACT.png" alt="React" /></li>
+            <li><img src="assets/SQL.png" alt="SQL" /></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Seção projetos -->
+      <section class="carousel-container" aria-labelledby="projects-title">
+        <h2 id="projects-title">Meus Projetos</h2>
+        <div class="carousel" id="carousel"></div>
+      </section>
+    </main>
+
+    <!-- Disco voador e abdução -->
+    <div class="ufo" id="ufo" aria-hidden="true">
+      <div class="ufo-top"></div>
+      <div class="ufo-bottom"></div>
+      <div class="raio"></div>
+    </div>
+    <div class="abduzivel" id="vaca" role="img" aria-label="Vaca">🐄</div>
+
+    <button id="openPongBtn" class="pong-open-btn">PONG</button>
+
+    <div id="pongOverlay" class="pong-overlay hidden">
+      <div class="pong-container">
+        <canvas id="pongCanvas" width="600" height="400"></canvas>
+        <p class="pong-p">Use W/S ou ↑/↓ para se mover</p>
+        <button id="closePongBtn" class="pong-close-btn">Fechar</button>
       </div>
-      <div class="Tech">
-        <h2>Tecnologias que domino:</h2>
-        <img class="Frameworks" src="assets/JS.png" alt="JavaScript" />
-        <img class="Frameworks" src="assets/Python.png" alt="Python" />
-        <img class="Frameworks" src="assets/REACT.png" alt="REACT" />
-        <img class="Frameworks" src="assets/SQL.png" alt="SQL" />
+    </div>
+
+    <button id="openSpaceInvadersBtn" class="game-open-btn">
+      Space Invaders
+    </button>
+
+    <div id="spaceInvadersOverlay" class="game-overlay hidden">
+      <div class="game-container">
+        <button id="closeSpaceInvadersBtn" class="game-close-btn">
+          Fechar
+        </button>
+        <canvas
+          id="spaceInvadersCanvas"
+          width="480"
+          height="320"
+          tabindex="0"
+        ></canvas>
       </div>
-    </section>
-    <section class="carousel-container">
-      <h2>Meus Projetos</h2>
-      <div class="carousel" id="carousel"></div>
-    </section>
+    </div>
 
-  <div class="ufo" id="ufo">
-    <div class="ufo-top"></div>
-    <div class="ufo-bottom"></div>
-    <div class="raio"></div>
-  </div>
+    <footer class="site-footer">
+      <p>&copy; 2025 Zion Keim. Todos os direitos reservados.</p>
+    </footer>
 
-  <div class="abduzivel" id="vaca">🐄</div>
-
-    <script src="Tetris.js"></script>
     <script src="script.js"></script>
-    <footer class="site-footer"></footer>
+    <script src="pong.js"></script>
+    <script src="spaceInvaders.js"></script>
   </body>
 </html>
